@@ -1,0 +1,60 @@
+{
+  "name": "sub2api-cpa",
+  "description": "A Cloudflare-based LLM gateway and proxy server: the CLIProxyAPI (CPA) project deployed as a Cloudflare Worker in one click.",
+  "license": "MIT",
+  "homepage": "https://github.com/PlaygrndLabs/sub2api#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PlaygrndLabs/sub2api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PlaygrndLabs/sub2api/issues"
+  },
+  "keywords": [
+    "cliproxyapi",
+    "cpa",
+    "cloudflare-workers",
+    "cloudflare-containers",
+    "claude-code",
+    "llm-gateway",
+    "llm-proxy",
+    "ai-gateway",
+    "openai-compatible",
+    "anthropic",
+    "codex",
+    "gemini",
+    "self-hosted"
+  ],
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "types": "wrangler types --include-env=false",
+    "typecheck": "tsc && tsc -p tsconfig.node.json",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "verify": "npm run typecheck && npm run lint && npm test",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@cloudflare/containers": "0.3.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "22.20.5",
+    "eslint": "10.12.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.1",
+    "vitest": "5.0.4",
+    "wrangler": "4.149.0"
+  },
+  "cloudflare": {
+    "bindings": {
+      "DASHBOARD_PASSWORD": {
+        "description": "Password for the dashboard sign-in at /login. Use a long random string, for example `openssl rand -base64 30`."
+      },
+      "MANAGEMENT_KEY": {
+        "description": "CPA management key, asked for inside the dashboard. At least 32 characters of A-Z a-z 0-9 _ -, for example `openssl rand -hex 32`. Used on first start only; change it in the dashboard afterwards."
+      }
+    }
+  }
+}
